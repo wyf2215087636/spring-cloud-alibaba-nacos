@@ -24,3 +24,10 @@ spring:
     password: 123456
 #    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  # Redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 60000
+

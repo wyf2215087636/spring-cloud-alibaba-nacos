@@ -50,11 +50,12 @@
         </dependency>
         <!-- Commons Begin -->
 
+        <!-- redis -->
         <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-extension</artifactId>
-            <version>3.4.1</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+
     </dependencies>
 
 
