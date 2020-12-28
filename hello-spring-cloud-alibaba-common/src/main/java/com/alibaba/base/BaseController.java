@@ -2,8 +2,6 @@ package com.alibaba.base;
 
 import com.alibaba.base.aop.annotation.InitEntity;
 import com.alibaba.base.aop.annotation.Select;
-import com.alibaba.base.entity.Entity;
-import com.alibaba.base.entity.EntityImpl;
 import com.alibaba.base.service.Service;
 import com.alibaba.base.sql.Condition;
 import com.alibaba.base.sql.Data;
@@ -14,19 +12,12 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import org.omg.CORBA.OBJ_ADAPTER;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-
-import java.io.Serializable;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
