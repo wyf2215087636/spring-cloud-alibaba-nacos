@@ -1,12 +1,9 @@
 package com.alibaba.provider.controller;
 
-import com.alibaba.provider.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.alibaba.base.BaseController;
+import com.alibaba.provider.entity.User;
+import com.alibaba.provider.mapper.UserMapper;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -15,33 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @describe nacos 服务提供类 控制器
  */
 @RestController
-public class NacosProviderController {
-
-    @Autowired private UserService userService;
-
-    @Autowired private StringRedisTemplate redisTemplate;
-
-    @Value("${server.port}")
-    private String port;
-
-    // 注入配置文件上下文
-    @Autowired
-    private ConfigurableApplicationContext applicationContext;
-
-    @GetMapping("/test/{message}")
-    public String test(@PathVariable String message) {
-        return "Hello Nacos Discovery " + message + " i am from port: " + port;
-    }
-
-    // 从上下文中读取配置
-    @GetMapping("hi")
-    public String sayHi() {
-        redisTemplate.opsForValue().set("test", "王逸飞测试数据");
-        return "Hello, " + applicationContext.getEnvironment().getProperty("user.name");
-    }
-
-    @GetMapping("insert")
-    public String insert() {
-        return userService.insert();
-    }
+@Api("测试")
+public class NacosProviderController extends BaseController<User, UserMapper> {
 }

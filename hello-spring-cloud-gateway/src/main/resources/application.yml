@@ -2,6 +2,28 @@ spring:
   application:
     name: nacos-gateway
 
+  security:
+    user:
+      name: wangyifei
+      password: 123456
+      roles: admin
+
+  main:
+    allow-bean-definition-overriding: true
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    #    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Shanghai
+  # Redis
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 60000
+
   cloud:
     nacos:
       discovery:
@@ -36,3 +58,8 @@ management:
     web:
       exposure:
         include: "*"
+
+socket:
+  key: wangyifei
+
+

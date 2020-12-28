@@ -1,5 +1,9 @@
 package com.alibaba.provider.entity;
 
+import com.alibaba.base.aop.annotation.Select;
+import com.alibaba.base.entity.Entity;
+import com.alibaba.base.entity.EntityImpl;
+import com.alibaba.base.sql.Condition;
 import lombok.Data;
 
 /**
@@ -8,10 +12,7 @@ import lombok.Data;
  * @describe
  */
 @Data
-public class User {
-
-    private String id;
-
+public class User extends Entity {
     private String name;
 
     private String password;

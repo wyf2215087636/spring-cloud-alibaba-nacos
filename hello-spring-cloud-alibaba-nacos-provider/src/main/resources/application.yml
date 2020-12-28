@@ -31,3 +31,7 @@ spring:
     password:
     timeout: 60000
 
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl #开启sql日志
+
