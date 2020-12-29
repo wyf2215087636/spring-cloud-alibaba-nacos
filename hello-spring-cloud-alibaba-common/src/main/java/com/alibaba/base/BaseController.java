@@ -2,6 +2,7 @@ package com.alibaba.base;
 
 import com.alibaba.base.aop.annotation.InitEntity;
 import com.alibaba.base.aop.annotation.Select;
+import com.alibaba.base.entity.Entity;
 import com.alibaba.base.service.Service;
 import com.alibaba.base.sql.Condition;
 import com.alibaba.base.sql.Data;
@@ -12,6 +13,8 @@ import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -42,7 +45,7 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     @PostMapping("insert")
     @Override
     @InitEntity
-    public Result insert(@RequestBody Entity entity) {
+    public Result insert(Entity entity) {
         if (baseMapper.insert(entity) < 1) {
             return SimpleResult.error(null);
         }
@@ -180,9 +183,8 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
      */
     @Override
     public Result deleteByDelFlag(String id) {
-        LambdaQueryWrapper<Entity> entityQueryWrapper = new LambdaQueryWrapper<>();
-        entityQueryWrapper.eq(Entity::getId, id);
 
+        // baseMapper.updateById(entity);
         return null;
     }
 
@@ -194,7 +196,10 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     @PutMapping("updateById")
     @Override
     public Result updateEntityById(Entity entity) {
-        return null;
+        if (baseMapper.updateById(entity) < 1) {
+            return SimpleResult.error(null);
+        }
+        return SimpleResult.success(null);
     }
 
     /**
@@ -205,7 +210,10 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     @PutMapping("updateByCustomize")
     @Override
     public Result updateByCustomize(Entity entity) {
-        return null;
+        if (baseMapper.update(entity, getWrapper(entity)) < 1) {
+            return SimpleResult.error(null);
+        }
+        return SimpleResult.success(null);
     }
 
     /**
@@ -217,7 +225,8 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     @GetMapping("list")
     @Override
     public Result list(Integer pageNum, Integer pageSize) {
-        return null;
+        IPage<Entity> page = baseMapper.selectPage(new Page<>(pageNum, pageSize), null);
+        return SimpleResult.success(page);
     }
 
     /**
@@ -230,6 +239,7 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     @GetMapping("listByCondition")
     @Override
     public Result listByCondition(Entity entity, Integer pageNum, Integer pageSize) {
-        return null;
+        IPage<Entity> page = baseMapper.selectPage(new Page<>(pageNum, pageSize), getWrapper(entity));
+        return SimpleResult.success(page);
     }
 }
