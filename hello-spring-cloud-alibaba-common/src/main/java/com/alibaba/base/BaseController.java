@@ -40,7 +40,7 @@ public class BaseController<Entity extends com.alibaba.base.entity.Entity,
     /**
      * 公共新增
      * @param entity 实体类
-     * @return 返回状态
+     * @return 返回状态..
      */
     @PostMapping("insert")
     @Override

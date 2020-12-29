@@ -9,4 +9,5 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
  * @describe
  */
 public class Service<M extends BaseMapper<T>, T> extends ServiceImpl<M, T> {
+
 }
