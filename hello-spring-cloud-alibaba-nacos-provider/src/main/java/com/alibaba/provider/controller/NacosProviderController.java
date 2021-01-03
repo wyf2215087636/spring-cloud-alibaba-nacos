@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @Api("测试")
 public class NacosProviderController extends BaseController<User, UserMapper> {
-
 }
 
 
